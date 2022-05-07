@@ -12,8 +12,7 @@ const Items = ({noi}) => {
   }
 
   console.log(noi);
-  return (
-    
+  return (    
     <div className='items'>
       {
         parseInt(noi) > 1 ?

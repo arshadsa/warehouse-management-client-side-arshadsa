@@ -13,6 +13,8 @@ import RequireAuth from "./Pages/Login/RequireAuth/RequireAuth";
 import NotFound from "./Pages/Shared/NotFound/NotFound";
 import MyItems from "./Pages/MyItems/MyItems";
 import PageTitle from "./Pages/Shared/PageTitle/PageTitle";
+import Blogs from "./Pages/Blogs/Blogs";
+import About from "./Pages/About/About";
 
 function App() {
   return (
@@ -69,10 +71,20 @@ function App() {
           element={
             <>
               <PageTitle title="Blogs"></PageTitle>
-              <AddNewItem></AddNewItem>
+              <Blogs></Blogs>
             </>
           }
         ></Route>
+        <Route
+          path="/about"
+          element={
+            <>
+              <PageTitle title="About"></PageTitle>
+              <About></About>
+            </>
+          }
+        ></Route>
+
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route
