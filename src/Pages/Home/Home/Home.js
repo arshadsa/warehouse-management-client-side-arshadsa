@@ -4,6 +4,8 @@ import Header from "../../Shared/Header/Header";
 import Items from "../../Shared/Items/Items";
 import PageTitle from "../../Shared/PageTitle/PageTitle";
 import Banner from "../Banner/Banner";
+import Info from "../Info/Info";
+import TopSellingItems from "../TopSellingItems/TopSellingItems";
 
 
 const Home = () => {
@@ -14,7 +16,10 @@ const Home = () => {
       <br></br>
       <h3 className="text-center">Inventory</h3>
       <br></br>
-      <Items noi='6'></Items>      
+      <Items noi='6'></Items>   
+      <TopSellingItems></TopSellingItems>
+      <Info></Info>
+
     </>
   );
 };

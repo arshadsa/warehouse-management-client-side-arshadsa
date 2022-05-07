@@ -13,7 +13,7 @@ const Items = ({noi}) => {
 
   console.log(noi);
   return (    
-    <div className='items'>
+    <div className='items card-group'>
       {
         parseInt(noi) > 1 ?
           products.slice(0, noi).map(product => <ItemDetails

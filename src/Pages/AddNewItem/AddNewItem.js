@@ -82,6 +82,17 @@ const AddNewItem = () => {
             {...register("quantity")}
           />
         </div>
+        <div className="input-group mb-3">
+          <span className="input-group-text" id="basic-addon3">
+            Supplier Name
+          </span>
+          <input
+            type="text"
+            className="form-control"
+            aria-describedby="basic-addon3"
+            {...register("supplier")}
+          />
+        </div>
         <div className="d-flex ms-auto">
           <button
             href="#!"
