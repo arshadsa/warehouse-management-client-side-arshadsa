@@ -16,6 +16,8 @@ import PageTitle from "./Pages/Shared/PageTitle/PageTitle";
 import Blogs from "./Pages/Blogs/Blogs";
 import About from "./Pages/About/About";
 import EditItem from "./Pages/EditItem/EditItem";
+import ManageInventoryButton from "./Pages/Shared/ManageInventoryButton/ManageInventoryButton";
+import { ToastContainer } from "react-bootstrap";
 
 function App() {
   return (
@@ -38,6 +40,7 @@ function App() {
           element={
             <RequireAuth>
               <SingleItemDetails></SingleItemDetails>
+              <ManageInventoryButton></ManageInventoryButton>
             </RequireAuth>
           }
         ></Route>
@@ -89,15 +92,6 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route
-          path="*"
-          element={
-            <>
-              <PageTitle title="404 Not Found"></PageTitle>
-              <NotFound></NotFound>
-            </>
-          }
-        ></Route>
-        <Route
           path="/edititem/:id"
           element={
             <RequireAuth>
@@ -106,8 +100,18 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+        <Route
+          path="*"
+          element={
+            <>
+              <PageTitle title="404 Not Found"></PageTitle>
+              <NotFound></NotFound>
+            </>
+          }
+        ></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer />
     </>
   );
 }

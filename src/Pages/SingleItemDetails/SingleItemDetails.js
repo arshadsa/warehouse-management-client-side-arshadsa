@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useProductDetails from "../../hooks/useProductDetails";
 import { useForm } from "react-hook-form";
 import "./SingleItemDetails.css";
@@ -9,7 +9,6 @@ const SingleItemDetails = () => {
   const [quantitySold, setQuantitySold] = useState([]);
   const { id } = useParams();
   const [product] = useProductDetails(id);
-  
 
   useEffect(() => {
     setQuantity(product?.quantity);
@@ -50,7 +49,6 @@ const SingleItemDetails = () => {
 
   return (
     <>
-    
       <div className="item-details-page">
         <h3 className="text-center">Item Details</h3>
         <div
@@ -98,29 +96,30 @@ const SingleItemDetails = () => {
 
           <div className="mx-3">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="">
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="">
                     Restock
                   </span>
                 </div>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="Quantity"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
-                  
                   {...register("quantity", { required: true })}
                 />
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="submit">
+                <div className="input-group-append">
+                  <button className="btn btn-outline-secondary" type="submit">
                     Submit
                   </button>
                 </div>
               </div>
             </form>
-            {errors.quantity && <span className="text-danger">* Quantity is required</span>}
+            {errors.quantity && (
+              <span className="text-danger">* Quantity is required</span>
+            )}
           </div>
         </div>
       </div>

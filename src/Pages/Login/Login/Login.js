@@ -8,7 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PageTitle from "../../Shared/PageTitle/PageTitle";
 import useToken from "../../../hooks/useToken";
@@ -39,7 +39,7 @@ const Login = () => {
   }
 
   if (error) {
-    errorElement = <p className="text-danger">Error: {error?.message}</p>;
+    errorElement = <p className="text-danger text-center">Error: {error?.message}</p>;
   }
 
   const handleSubmit = async (event) => {
@@ -58,6 +58,7 @@ const Login = () => {
     const email = emailRef.current.value;
     if (email) {
       await sendPasswordResetEmail(email);
+      console.log('toast');
       toast("Sent email");
     } else {
       toast("please enter your email address");
@@ -119,6 +120,7 @@ const Login = () => {
       <SocialLogin></SocialLogin>
       <br/>
       <br/>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

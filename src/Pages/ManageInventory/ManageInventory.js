@@ -67,6 +67,7 @@ const ManageInventory = () => {
             ))}
           </tbody>
         </table>
+        <Link className="btn btn-info" to='/add-new-item'>Add New Item</Link>
       </div>
 
       {/* <div className="container">

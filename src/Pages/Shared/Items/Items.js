@@ -3,6 +3,7 @@ import useProducts from "../../../hooks/useProducts";
 import ItemDetails from "../ItemDetails/ItemDetails";
 import "./Items.css";
 import Loading from "../../Shared/Loading/Loading";
+import { Link } from "react-router-dom";
 
 const Items = ({ noi }) => {
   const [products, setProducts] = useProducts();
@@ -28,7 +29,6 @@ const Items = ({ noi }) => {
               <ItemDetails key={product._id} product={product}></ItemDetails>
             ))}
       </div>
-      <br />
       <br />
     </>
   );

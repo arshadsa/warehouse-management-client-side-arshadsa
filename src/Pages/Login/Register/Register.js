@@ -45,10 +45,13 @@ const Register = () => {
   };
 
   return (
-    <>
+    <div className="container w-50 mx-auto">
+      <br />
+      <br />
       <PageTitle title="Register"></PageTitle>
       <div className="register-form">
-        <h2 style={{ textAlign: "center" }}>Please Register</h2>
+        <h2 className="text-secondary text-center mt-2">Please Register</h2>
+        <br/><br/>
         <form onSubmit={handleRegister}>
           <input type="text" name="name" id="" placeholder="Your Name" />
 
@@ -97,9 +100,9 @@ const Register = () => {
             Please Login
           </Link>{" "}
         </p>
-        <SocialLogin></SocialLogin>
       </div>
-    </>
+      <SocialLogin></SocialLogin>
+    </div>
   );
 };
 
