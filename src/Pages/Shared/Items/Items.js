@@ -12,7 +12,7 @@ const Items = ({ noi }) => {
     return <Loading></Loading>;
   }
 
-  console.log(noi);
+  // console.log(noi);
   return (
     <>
       <br />

@@ -37,7 +37,7 @@ const MyItems = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           const remaining = products.filter((service) => service._id !== id);
           setProducts(remaining);
         });

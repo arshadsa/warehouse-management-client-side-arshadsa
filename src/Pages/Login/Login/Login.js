@@ -21,7 +21,7 @@ const Login = () => {
   const location = useLocation();
 
   let from = location.state?.from?.pathname || "/";
-  console.log(from);
+  // console.log(from);
   let errorElement;
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -58,7 +58,7 @@ const Login = () => {
     const email = emailRef.current.value;
     if (email) {
       await sendPasswordResetEmail(email);
-      console.log('toast');
+      // console.log('toast');
       toast("Sent email");
     } else {
       toast("please enter your email address");

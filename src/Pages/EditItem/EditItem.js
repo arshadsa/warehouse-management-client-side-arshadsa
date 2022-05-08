@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Navigate, useLocation, useParams } from "react-router-dom";
+import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import auth from "../../firebase.init";
 import useProductDetails from "../../hooks/useProductDetails";
 import "./EditItem.css";
@@ -19,8 +19,9 @@ const EditItem = () => {
     supplier: ''});
   const [formData,setFormData] = useState([]);
   const location = useLocation();
+  const navigate=useNavigate();
   let from = location.state?.from?.pathname;
-  console.log(from);
+  // console.log(from);
 
   useEffect(() => {
     SetProductForm({
@@ -31,7 +32,7 @@ const EditItem = () => {
       quantity: product.quantity,
       supplier: product.supplier,
     });
-    console.log(productForm);
+    // console.log(productForm);
   }, [product]);
 
   const url = `${process.env.REACT_APP_BASE_URL}/product/${id}`;
@@ -44,11 +45,11 @@ const EditItem = () => {
       body: JSON.stringify(newData),
     })
       .then((res) => res.json())
-      .then((result) => {});
+      
   };
 
   const onSubmit = (data) => {
-    console.log({...productForm, edititem: true});
+    // console.log({...productForm, edititem: true});
     const url = `${process.env.REACT_APP_BASE_URL}/product/${id}`;
     fetch(url, {
       method: "POST",
@@ -59,7 +60,8 @@ const EditItem = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
+        navigate(from);
       });
   };
 

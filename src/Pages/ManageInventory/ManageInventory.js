@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
 import Items from "../Shared/Items/Items";
 import PageTitle from "../Shared/PageTitle/PageTitle";
@@ -7,6 +7,7 @@ import "./ManageInventory.css";
 
 const ManageInventory = () => {
   const [products, setProducts] = useProducts();
+  const location = useLocation();
   
   const deleteItem = (id) => {
     const proceed = window.confirm("Are you sure?");
@@ -17,7 +18,7 @@ const ManageInventory = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           const remaining = products.filter((service) => service._id !== id);
           setProducts(remaining);
         });
@@ -52,6 +53,7 @@ const ManageInventory = () => {
                 <td>
                   <Link to={`/edititem/${product._id}`}
                     className="btn btn-primary me-2"
+                    state={{ from: location }} replace
                   >
                     Edit
                   </Link>

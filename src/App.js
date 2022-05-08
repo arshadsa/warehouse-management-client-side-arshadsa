@@ -19,10 +19,12 @@ import EditItem from "./Pages/EditItem/EditItem";
 import ManageInventoryButton from "./Pages/Shared/ManageInventoryButton/ManageInventoryButton";
 import { ToastContainer } from "react-bootstrap";
 
+// Starting point of the app
 function App() {
   return (
     <>
       <Header></Header>
+      {/* Routes. It also has some require routes */}
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>

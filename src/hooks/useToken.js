@@ -13,7 +13,7 @@ const useToken = user => {
             
                 const { data } = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, { email });
                 setToken(data.accessToken);
-                console.log(data.accessToken);
+                // console.log(data.accessToken);
                 localStorage.setItem('accessToken', data.accessToken);
             }
         }

@@ -8,7 +8,7 @@ const AddNewItem = () => {
   const [user] = useAuthState(auth);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     data.uid = user.uid;
     data.quantitySold = 0;
     const url = `${process.env.REACT_APP_BASE_URL}/product`;
@@ -21,7 +21,7 @@ const AddNewItem = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
       });
   };
 
