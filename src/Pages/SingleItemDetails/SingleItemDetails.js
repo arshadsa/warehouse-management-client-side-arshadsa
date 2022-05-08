@@ -6,11 +6,14 @@ import "./SingleItemDetails.css";
 
 const SingleItemDetails = () => {
   const [quantity, setQuantity] = useState([]);
+  const [quantitySold, setQuantitySold] = useState([]);
   const { id } = useParams();
   const [product] = useProductDetails(id);
+  
 
   useEffect(() => {
     setQuantity(product?.quantity);
+    setQuantitySold(product?.quantitySold);
   }, [product]);
 
   const {
@@ -31,6 +34,7 @@ const SingleItemDetails = () => {
       .then((res) => res.json())
       .then((result) => {
         setQuantity(parseInt(result.quantity));
+        setQuantitySold(parseInt(result.quantitySold));
       });
   };
 
@@ -46,6 +50,7 @@ const SingleItemDetails = () => {
 
   return (
     <>
+    
       <div className="item-details-page">
         <h3 className="text-center">Item Details</h3>
         <div
@@ -77,7 +82,7 @@ const SingleItemDetails = () => {
             </p>
             <p>
               <strong>Quantity Sold: </strong>
-              {product?.quantitySold}
+              {quantitySold}
             </p>
             <br></br>
             <div className="d-block text-center">

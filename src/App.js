@@ -15,6 +15,7 @@ import MyItems from "./Pages/MyItems/MyItems";
 import PageTitle from "./Pages/Shared/PageTitle/PageTitle";
 import Blogs from "./Pages/Blogs/Blogs";
 import About from "./Pages/About/About";
+import EditItem from "./Pages/EditItem/EditItem";
 
 function App() {
   return (
@@ -94,6 +95,15 @@ function App() {
               <PageTitle title="404 Not Found"></PageTitle>
               <NotFound></NotFound>
             </>
+          }
+        ></Route>
+        <Route
+          path="/edititem/:id"
+          element={
+            <RequireAuth>
+              <PageTitle title="Edit Item"></PageTitle>
+              <EditItem></EditItem>
+            </RequireAuth>
           }
         ></Route>
       </Routes>

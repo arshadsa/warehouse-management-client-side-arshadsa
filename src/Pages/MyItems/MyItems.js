@@ -1,13 +1,14 @@
 import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import axiosPrivate from "../../api/axiosPrivate";
 import auth from "../../firebase.init";
 
 const MyItems = () => {
   const [products, setProducts] = useState([]);
   const [user] = useAuthState(auth);
+  const location = useLocation();
 
   useEffect(() => {
     const getMyItems = async () => {
@@ -45,6 +46,7 @@ const MyItems = () => {
 
   return (
     <div className="container">
+      <br/><br/><br/>
       <table className="table">
         <thead>
           <tr>
@@ -65,9 +67,14 @@ const MyItems = () => {
               <td>{product.quantity}</td>
               <td>{product.supplier}</td>
               <td>
+              <Link to={`/edititem/${product._id}`}
+                    className="btn btn-primary me-2"
+                    state={{ from: location }} replace>
+                    Edit
+                  </Link>
                 <a
                   href="#!"
-                  className="btn btn-primary"
+                  className="btn btn-danger"
                   onClick={() => deleteItem(product._id)}
                 >
                   Delete
@@ -77,6 +84,7 @@ const MyItems = () => {
           ))}
         </tbody>
       </table>
+      <br/><br/>
     </div>
   );
 };

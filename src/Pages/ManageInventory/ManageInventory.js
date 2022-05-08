@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
 import Items from "../Shared/Items/Items";
 import PageTitle from "../Shared/PageTitle/PageTitle";
@@ -6,7 +7,7 @@ import "./ManageInventory.css";
 
 const ManageInventory = () => {
   const [products, setProducts] = useProducts();
-
+  
   const deleteItem = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
@@ -26,6 +27,8 @@ const ManageInventory = () => {
   return (
     <>
       <PageTitle title="Manage Inventory"></PageTitle>
+      <br />
+      <br />
       <div className="container">
         <table className="table">
           <thead>
@@ -47,9 +50,14 @@ const ManageInventory = () => {
                 <td>{product.quantity}</td>
                 <td>{product.supplier}</td>
                 <td>
+                  <Link to={`/edititem/${product._id}`}
+                    className="btn btn-primary me-2"
+                  >
+                    Edit
+                  </Link>
                   <a
                     href="#!"
-                    className="btn btn-primary"
+                    className="btn btn-danger"
                     onClick={() => deleteItem(product._id)}
                   >
                     Delete

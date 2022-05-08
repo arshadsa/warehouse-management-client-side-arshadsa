@@ -13,9 +13,9 @@ const Home = () => {
     <>
       <PageTitle title="Home"></PageTitle>
       <Banner></Banner>
-      <br></br>
-      <h3 className="text-center">Inventory</h3>
-      <br></br>
+      <br></br><br></br>
+      <h1 className="text-center">Inventory</h1>
+      <br></br><br></br>
       <Items noi='6'></Items>   
       <TopSellingItems></TopSellingItems>
       <Info></Info>

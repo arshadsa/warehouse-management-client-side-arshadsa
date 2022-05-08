@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PageTitle from "../../Shared/PageTitle/PageTitle";
 import useToken from "../../../hooks/useToken";
+import './Login.css';
 
 const Login = () => {
   const emailRef = useRef("");
@@ -68,13 +69,16 @@ const Login = () => {
   return (
     <div className="container w-50 mx-auto">
       <PageTitle title="Login"></PageTitle>
-      <h2 className="text-primary text-center mt-2">Please Login</h2>
-      <Form onSubmit={handleSubmit}>
+      <br/><br/><br/>
+      <h2 className="text-secondary text-center mt-2">Please Login</h2>
+      <br/><br/>
+      <Form onSubmit={handleSubmit} className='login-form'>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
             ref={emailRef}
             type="email"
             placeholder="Enter email"
+            className=""
             required
           />
         </Form.Group>
@@ -91,7 +95,8 @@ const Login = () => {
         </Button>
       </Form>
       {errorElement}
-      <p>
+      <br/>
+      <p className='login-form'>
         New to Inventory?{" "}
         <Link
           to="/register"
@@ -101,16 +106,19 @@ const Login = () => {
           Please Register
         </Link>{" "}
       </p>
-      <p>
+      <p className='login-form'>
         Forget Password?{" "}
         <button
-          className="btn btn-link text-primary pe-auto text-decoration-none"
+          className="btn btn-link text-danger pe-auto text-decoration-none p-0 m-0"
           onClick={resetPassword}
         >
           Reset Password
         </button>{" "}
       </p>
+      <br></br>
       <SocialLogin></SocialLogin>
+      <br/>
+      <br/>
     </div>
   );
 };

@@ -1,23 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { Navigate, useLocation, useParams } from "react-router-dom";
 import auth from "../../firebase.init";
-import "./AddNewItem.css";
+import useProductDetails from "../../hooks/useProductDetails";
+import "./EditItem.css";
 
-const AddNewItem = () => {
+const EditItem = () => {
   const [user] = useAuthState(auth);
   const { register, handleSubmit } = useForm();
+  const { id } = useParams();
+  const [product] = useProductDetails(id);
+  const [productForm, SetProductForm] = useState({name: '',
+    description: '',
+    price: '',
+    img: '',
+    quantity: '',
+    supplier: ''});
+  const [formData,setFormData] = useState([]);
+  const location = useLocation();
+  let from = location.state?.from?.pathname;
+  console.log(from);
+
+  useEffect(() => {
+    SetProductForm({
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      img: product.img,
+      quantity: product.quantity,
+      supplier: product.supplier,
+    });
+    console.log(productForm);
+  }, [product]);
+
+  const url = `${process.env.REACT_APP_BASE_URL}/product/${id}`;
+  const fetchData = async (newData) => {
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newData),
+    })
+      .then((res) => res.json())
+      .then((result) => {});
+  };
+
   const onSubmit = (data) => {
-    console.log(data);
-    data.uid = user.uid;
-    data.quantitySold = 0;
-    const url = `${process.env.REACT_APP_BASE_URL}/product`;
+    console.log({...productForm, edititem: true});
+    const url = `${process.env.REACT_APP_BASE_URL}/product/${id}`;
     fetch(url, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({...productForm, edititem: true}),
     })
       .then((res) => res.json())
       .then((result) => {
@@ -29,7 +67,7 @@ const AddNewItem = () => {
     <div className="container AddNewItem">
       <br />
       <br />
-      <h2>Please add a new item</h2>
+      <h2>Edit the item</h2>
       <br />
       <form className="d-flex flex-column" onSubmit={handleSubmit(onSubmit)}>
         <div className="input-group mb-3">
@@ -40,7 +78,11 @@ const AddNewItem = () => {
             type="text"
             className="form-control"
             aria-describedby="basic-addon3"
-            {...register("name", { required: true, maxLength: 20 })}
+            value={productForm.name}
+            onChange = {(e)=> {
+              SetProductForm({...productForm, name: e.target.value})
+              }
+            }            
           />
         </div>
         <div className="input-group mb-3">
@@ -51,7 +93,11 @@ const AddNewItem = () => {
             type="text"
             className="form-control"
             aria-describedby="basic-addon3"
-            {...register("description")}
+            value={productForm.description}
+            onChange = {(e)=> {
+              SetProductForm({...productForm, description: e.target.value})
+              }
+            } 
           />
         </div>
         <div className="input-group mb-3">
@@ -62,7 +108,11 @@ const AddNewItem = () => {
             type="text"
             className="form-control"
             aria-describedby="basic-addon3"
-            {...register("price")}
+            value={productForm.price}
+            onChange = {(e)=> {
+              SetProductForm({...productForm, price: e.target.value})
+              }
+            } 
           />
         </div>
         <div className="input-group mb-3">
@@ -73,7 +123,11 @@ const AddNewItem = () => {
             type="text"
             className="form-control"
             aria-describedby="basic-addon3"
-            {...register("img")}
+            value={productForm.img}
+            onChange = {(e)=> {
+              SetProductForm({...productForm, img: e.target.value})
+              }
+            }
           />
         </div>
         <div className="input-group mb-3">
@@ -84,7 +138,11 @@ const AddNewItem = () => {
             type="text"
             className="form-control"
             aria-describedby="basic-addon3"
-            {...register("quantity")}
+            value={productForm.quantity}
+            onChange = {(e)=> {
+              SetProductForm({...productForm, quantity: e.target.value})
+              }
+            }
           />
         </div>
         <div className="input-group mb-3">
@@ -95,7 +153,11 @@ const AddNewItem = () => {
             type="text"
             className="form-control"
             aria-describedby="basic-addon3"
-            {...register("supplier")}
+            value={productForm.supplier}
+            onChange = {(e)=> {
+              SetProductForm({...productForm, supplier: e.target.value})
+              }
+            }
           />
         </div>
         <br />
@@ -112,8 +174,7 @@ const AddNewItem = () => {
       </form>
       <br />
     </div>
-    
   );
 };
 
-export default AddNewItem;
+export default EditItem;
